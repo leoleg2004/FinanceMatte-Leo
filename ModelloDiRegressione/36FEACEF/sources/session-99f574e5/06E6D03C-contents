@@ -5,15 +5,18 @@ library(DBI)
 library(RMariaDB)
 library(ggplot2)
 
+# 0. IMPOSTA L'ETF DA ANALIZZARE
+TARGET_ETF <- "IUSQ.DE"   # Cambia questo ticker per analizzare altri fondi
+
 # 1. Connessione ed Estrazione Dati
 con <- dbConnect(RMariaDB::MariaDB(), dbname = "PortfolioDB", host = "127.0.0.1", user = "root", password = "Root1234!")
-query <- "
+query <- sprintf("
 SELECT i.history_date as Date, i.close_value as Index_Value, e.close_price as ETF_Price
 FROM Index_Historical_Data i
 JOIN Assets a ON a.tracked_index_id = i.index_id
 JOIN Asset_Historical_Prices e ON e.isin = a.isin AND e.price_date = i.history_date
-WHERE a.ticker = 'IUSQ.DE' ORDER BY i.history_date ASC;
-"
+WHERE a.ticker = '%s' ORDER BY i.history_date ASC;
+", TARGET_ETF)
 dataset <- dbGetQuery(con, query)
 dbDisconnect(con)
 
@@ -94,4 +97,3 @@ grafico_costi <- ggplot(data_long, aes(x = Data, y = Valore, color = Strumento))
   theme_minimal()
 
 print(grafico_costi)
-

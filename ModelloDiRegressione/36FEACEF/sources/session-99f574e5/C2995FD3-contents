@@ -146,3 +146,4 @@ grafico_costi <- ggplot(data_long, aes(x = Data, y = Capitale, color = Strumento
   )
 
 print(grafico_costi)
+
