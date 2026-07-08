@@ -7,14 +7,14 @@
 
 # 1. IMPOSTA IL TUO PORTAFOGLIO
 PORTFOLIO_ETFS <- c("SXR8.DE", "VWCE.DE", "IGLN.L")   # ETF
-PORTFOLIO_PESI <- c(0.50,      0.30,      0.20)       # Pesi (Totale 1.0)
+PORTFOLIO_PESI <- c(0.20,      0.60,      0.20)       # Pesi (Totale 1.0)
 
 # 2. IMPOSTA IL TUO PIANO PER IL FUTURO
-ANNI_FUTURI        <- 20       # Per quanti anni vuoi simulare il futuro?
-CAPITALE_INIZIALE  <- 10000    # Soldi di partenza
-VERSAMENTO_MENSILE <- 500      # Soldi aggiunti col PAC ogni mese
+ANNI_FUTURI        <- 10       # Per quanti anni vuoi simulare il futuro?
+CAPITALE_INIZIALE  <- 5000    # Soldi di partenza
+VERSAMENTO_MENSILE <- 200      # Soldi aggiunti col PAC ogni mese
 INFLAZIONE_ANNUA   <- 0.02     # Inflazione annua stimata (2%) per calcolare il vero potere d'acquisto
-NUM_SIMULAZIONI    <- 1000     # Quanti universi paralleli simulare (1000 è lo standard)
+NUM_SIMULAZIONI    <- 10000     # Quanti universi paralleli simulare 
 
 # ==============================================================================
 
@@ -90,7 +90,7 @@ matrice_simulazioni[1, ] <- CAPITALE_INIZIALE
 
 inflazione_mensile <- (1 + INFLAZIONE_ANNUA)^(1/12) - 1
 
-cat("Avvio simulazione di 1.000 futuri paralleli...\n")
+cat("Avvio simulazione di  futuri paralleli...\n")
 
 # Per ogni simulazione (universo)
 for(sim in 1:NUM_SIMULAZIONI) {
@@ -116,7 +116,7 @@ migliore_95 <- quantile(risultati_finali, 0.95)
 totale_versato <- CAPITALE_INIZIALE + (VERSAMENTO_MENSILE * mesi_futuri)
 
 cat("=========================================================================\n")
-cat(sprintf(" RISULTATO PREVISTO TRA %d ANNI (Mille universi simulati)\n", ANNI_FUTURI))
+cat(sprintf(" RISULTATO PREVISTO TRA %d ANNI\n", ANNI_FUTURI))
 cat(" I risultati sono espressi in Potere d'Acquisto Odierno (Inflazione Dedotta)\n")
 cat("=========================================================================\n")
 cat(sprintf("Totale Denaro Fisico Versato:   € %s\n\n", format(totale_versato, big.mark=".", decimal.mark=",")))
