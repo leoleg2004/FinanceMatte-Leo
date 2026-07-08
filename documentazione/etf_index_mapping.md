@@ -54,5 +54,43 @@ Questo documento esplica la struttura del database `PortfolioDB` aggiornato. Mos
 
 ---
 
+## 6. 🏭 Small Cap USA (Aziende a bassa capitalizzazione)
+**Ticker Indice nel DB:** `^RUT` *(Russell 2000 Index)*
+
+| Ticker ETF | Nome Fondo | Valuta | TER | Info |
+|------------|------------|--------|-----|------|
+| **IWM** | iShares Russell 2000 ETF | USD | 0.19% | L'ETF americano più liquido per le Small Cap USA. |
+| **ZPRR.DE** | SPDR Russell 2000 US Small Cap UCITS | EUR | 0.30% | La controparte armonizzata UCITS europea. |
+
+---
+
+## 7. 🥇 Oro Fisico (Materia Prima)
+**Ticker Indice nel DB:** `GC=F` *(Gold Futures USD)*
+
+| Ticker ETF | Nome Fondo | Valuta | TER | Info |
+|------------|------------|--------|-----|------|
+| **IGLN.L** | iShares Physical Gold ETC | USD | 0.12% | ETC a replica fisica sull'oro scambiato in dollari. |
+| **SGLD.MI** | Invesco Physical Gold ETC | EUR | 0.12% | Ottimo ETC per esporsi all'oro sulla borsa di Milano. |
+
+---
+
+## 8. 💻 Information Technology USA (Settore Tech S&P 500)
+**Ticker Indice nel DB:** `XLK` *(Technology Select Sector SPDR Fund proxy)*
+
+| Ticker ETF | Nome Fondo | Valuta | TER | Info |
+|------------|------------|--------|-----|------|
+| **QDVE.DE** | iShares S&P 500 Info Tech Sector UCITS | EUR | 0.15% | Per sovrappesare le Big Tech americane. |
+
+---
+
+## 9. 🌏 Mercati Emergenti (Cina, India, Brasile, etc.)
+**Ticker Indice nel DB:** `EEM` *(iShares MSCI Emerging Markets ETF proxy)*
+
+| Ticker ETF | Nome Fondo | Valuta | TER | Info |
+|------------|------------|--------|-----|------|
+| **EIMI.MI** | iShares Core MSCI EM IMI UCITS ETF | EUR | 0.18% | L'ETF leader in Europa per i mercati emergenti. |
+
+---
+
 ### 🔍 Come usare questa mappa per i modelli
 Nel prossimo script R che creeremo, ti basterà inserire il `Ticker ETF` (es. `SXR8.DE`) e lo script andrà automaticamente a cercare il suo indice corrispondente (es. `^GSPC`) calcolando la Tracking Difference, i tassi di crescita e il coefficiente Beta.

@@ -9,14 +9,14 @@
 
 # 1. IMPOSTA IL TUO PORTAFOGLIO IDEALE
 PORTFOLIO_ETFS <- c("SXR8.DE", "IUSQ.DE", "SWDA.MI")   # Ticker degli ETF
-PORTFOLIO_PESI <- c(0.10,      0.80,      0.10)        # Devono sommare a 1.0 (100%)
+PORTFOLIO_PESI <- c(0.30,      0.40,      0.30)        # Devono sommare a 1.0 (100%)
 
 # 2. IMPOSTA I TUOI SOLDI
-CAPITALE_INIZIALE  <- 1000   # Euro inseriti il primo giorno
-VERSAMENTO_MENSILE <- 500     # Euro inseriti alla fine di ogni mese (Piano Accumulo)
+CAPITALE_INIZIALE  <- 10000   # Euro inseriti il primo giorno
+VERSAMENTO_MENSILE <- 600     # Euro inseriti alla fine di ogni mese (Piano Accumulo)
 
 # 3. IMPOSTA I COSTI DEL PROMOTORE BANCARIO DA CONFRONTARE
-TER_BANCA      <- 0.015       # 1.5% di costo annuo 
+TER_BANCA      <- 0.025       # 1.5% di costo annuo 
 INGRESSO_BANCA <- 0.02        # 2.0% di trattenuta su OGNI versamento effettuato
 
 # ==============================================================================
