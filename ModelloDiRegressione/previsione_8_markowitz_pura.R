@@ -10,7 +10,7 @@ library(tidyr)
 
 # --- CONFIGURAZIONI ---
 # Puoi aggiungere, rimuovere o modificare i ticker qui. Il codice si adatterà in automatico!
-PORTFOLIO_ETFS <- c("VWCE.DE", "IGLN.L", "USO")
+PORTFOLIO_ETFS <- c("VWCE.DE", "SXRV.DE", "ZPRR.DE")
 
 # Assicurati che i pesi corrispondano esattamente al numero di ETF scelti sopra 
 # e che la somma faccia sempre 1.0.
@@ -199,3 +199,4 @@ grafico_markowitz <- ggplot(df_markowitz, aes(x = Volatilita, y = Rendimento, co
 
 print(grafico_markowitz)
 cat("Grafico multi-asset generato con successo! Controlla i Plots in RStudio.\n")
+

@@ -3,9 +3,9 @@
     "path": "~/Desktop/PROGETTI/FinanceMatte&Leo/ModelloDiRegressione/previsione_8_markowitz_pura.R",
     "project_path": "previsione_8_markowitz_pura.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "2241133935",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1783535711394.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -16,11 +16,11 @@
         "scrollLine": "179"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783535994,
+    "lastKnownWriteTime": 1783536400,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783536131353,
+    "last_content_update": 1783536400692,
     "read_only": false,
     "read_only_alternatives": []
 }

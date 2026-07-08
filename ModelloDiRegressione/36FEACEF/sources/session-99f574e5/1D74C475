@@ -1,0 +1,26 @@
+{
+    "id": "1D74C475",
+    "path": "~/Desktop/PROGETTI/FinanceMatte&Leo/ModelloDiRegressione/previsione_6_multifattoriale_cholesky.R",
+    "project_path": "previsione_6_multifattoriale_cholesky.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1783536427915.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "276,0",
+        "scrollLine": "254"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1783529576,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1783529576,
+    "read_only": false,
+    "read_only_alternatives": []
+}
