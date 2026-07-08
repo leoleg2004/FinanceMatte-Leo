@@ -24,6 +24,10 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+# Funzioni Statistiche
+calc_skewness <- function(x) { n <- length(x); (sum((x - mean(x))^3) / n) / (sd(x)^3) }
+calc_kurtosis <- function(x) { n <- length(x); (sum((x - mean(x))^4) / n) / (sd(x)^4) }
+
 # Controlli sicurezza
 if(sum(PORTFOLIO_PESI) != 1) stop("Errore: I pesi devono sommare a 1.0")
 
@@ -81,6 +85,14 @@ cat("   ESTRAZIONE COMPORTAMENTO STORICO DEL PORTAFOGLIO\n")
 cat("=========================================================================\n")
 cat(sprintf("Rendimento Medio Mensile (Storico):  %.3f %%\n", mu_mensile * 100))
 cat(sprintf("Volatilità Mensile (Rischio):        %.3f %%\n", sigma_mensile * 100))
+cat(sprintf("Asimmetria (Skewness):               %.3f  (Normale = 0)\n", calc_skewness(ritorni_mensili$Port_Return)))
+cat(sprintf("Code Grasse (Kurtosis):              %.3f  (Normale = 3)\n", calc_kurtosis(ritorni_mensili$Port_Return)))
+cat("=========================================================================\n\n")
+
+cat("=========================================================================\n")
+cat("   PARAMETRI DEL MODELLO\n")
+cat("=========================================================================\n")
+cat("Motore Base: Nessun parametro stocastico aggiuntivo (Normale Semplice).\n")
 cat("=========================================================================\n\n")
 
 # --- 3. SIMULAZIONE MONTE CARLO DEL FUTURO ---
@@ -124,6 +136,13 @@ cat(sprintf("Totale Denaro Fisico Versato:   € %s\n\n", format(totale_versato,
 cat(sprintf("[CASO PESSIMO 5%%]               € %s\n", format(round(peggiore_5, 0), big.mark=".", decimal.mark=",")))
 cat(sprintf("[CASO VEROSIMILE 50%%]           € %s\n", format(round(mediano_50, 0), big.mark=".", decimal.mark=",")))
 cat(sprintf("[CASO OTTIMO 95%%]               € %s\n", format(round(migliore_95, 0), big.mark=".", decimal.mark=",")))
+cat("=========================================================================\n\n")
+
+cat("=========================================================================\n")
+cat("   ANALISI STATISTICA DEI FUTURI (CAPITALE FINALE)\n")
+cat("=========================================================================\n")
+cat(sprintf("Asimmetria del Capitale:             %.3f\n", calc_skewness(risultati_finali)))
+cat(sprintf("Curtosi del Capitale:                %.3f\n", calc_kurtosis(risultati_finali)))
 cat("=========================================================================\n\n")
 
 # --- 5. GRAFICO FAN CHART (SPAGHETTI PLOT) ---

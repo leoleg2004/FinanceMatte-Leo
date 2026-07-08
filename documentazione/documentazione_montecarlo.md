@@ -72,3 +72,36 @@ Vedere a occhio la nuvola grigia delle simulazioni che si espande a dismisura (a
 > *"Più a lungo investi, più il ventaglio dei risultati si allarga a dismisura per via dell'interesse composto."*
 
 Le 3 linee colorate ti aiutano visivamente a capire la pendenza dei tre scenari guida, per capire non solo dove finirai tra 20 anni, ma anche le ipotetiche traiettorie che attraverserai nel tragitto!
+
+---
+
+## 6. L'Arsenale Avanzato (I 5 Modelli Stocastici)
+
+Oltre al classico Moto Browniano basato sulla distribuzione normale, il progetto include ora **5 motori fisico-matematici avanzati**, situati nella cartella `ModelloDiRegressione`. Ciascuno di questi script attacca una vulnerabilità specifica della teoria classica, applicando calcoli stocastici avanzati.
+
+Di seguito il dettaglio tecnico su come operano sotto il cofano.
+
+### 1. `previsione_1_bootstrap.R` (Historical Resampling)
+La simulazione Monte Carlo standard presume che i mercati seguano una perfetta "Curva a Campana" (Distribuzione Normale). Tuttavia, nel mondo reale, la Borsa è soggetta a "Code Grasse" (Fat Tails): eventi estremi catastrofici (o estremamente positivi) accadono molto più frequentemente di quanto la statistica normale ammetta.
+- **Come funziona:** Questo script butta via la formula teorica `rnorm`. Estrae il vettore reale dei rendimenti mensili passati vissuti dal tuo portafoglio. Per simulare il futuro, il ciclo inserisce la "mano" nell'urna del passato e pesca un mese a caso, lo applica al capitale, lo rimette nell'urna e pesca di nuovo (Resampling con re-immissione).
+- **Vantaggio matematico:** Preserva intrinsecamente la "Kurtosi" (la probabilità di eventi estremi) e lo "Skew" (l'asimmetria) dei tuoi specifici ETF. Se l'ETF ha subito un crollo del -20% nel marzo 2020, c'è una concreta possibilità che il modello estragga quel mese nero due o tre volte in un anno, simulando una recessione prolungata gravissima, impossibile da prevedere con il classico Moto Browniano.
+
+### 2. `previsione_2_merton_jump.R` (Jump-Diffusion Model)
+Ideato da Robert Merton, questo modello teorizza che l'asset model segua un tragitto tranquillo intervallato da "Salti" (Jump) di prezzo impulsivi e discontinui.
+- **Come funziona:** Usa due generatori stocastici. Il primo è un normale Moto Browniano che simula le contrattazioni quotidiane. Il secondo è un **Processo di Poisson** (una distribuzione matematica degli eventi rari).
+- **Implementazione nel codice:** Impostiamo `LAMBDA = 0.5`, dicendo al sistema che ci aspettiamo in media un grande shock di borsa ogni due anni. Il loop usa `rpois` per determinare se in un mese specifico scatta la bomba. Se l'esito è positivo, usa una seconda normale per calcolare l'entità del collasso (es. un drop medio del -15%). Il rendimento di quel mese sarà la somma del rumore standard più il cratere lasciato dal salto.
+
+### 3. `previsione_3_heston.R` (Volatilità Stocastica)
+Il limite più grande del modello base è che calcola una singola volatilità ($\sigma$) oggi e la mantiene fissa nel calcolo per 20 anni. Nella realtà, i mercati passano da anni di estrema apatia (bassa volatilità) ad anni di panico selvaggio (altissima volatilità).
+- **Come funziona:** Usa l'equazione differenziale stocastica di Heston che richiede la simulazione parallela di **due** moti browniani correlati. Nel loop for di 240 mesi, il programma calcola una traiettoria per la Volatilità usando un processo CIR (che le impedisce di diventare negativa), e una traiettoria per il Prezzo. 
+- **Implementazione nel codice:** È inserito un parametro chiave, `RHO = -0.7`. Significa che le due traiettorie sono inversamente correlate: quando il prezzo scende, l'algoritmo alza in automatico la volatilità del mese successivo, rendendo il crollo più instabile, mimando perfettamente l'Effetto Leva (Leverage Effect) dei mercati azionari reali.
+
+### 4. `previsione_4_ornstein_uhlenbeck.R` (Mean Reverting)
+Le azioni tech e gli indici globali come l'S&P 500 tendono a salire per decenni in modo esplosivo (Random Walk con Drift). Tuttavia, altre grandezze finanziarie - come l'Oro, le materie prime o i tassi di interesse delle banche centrali - rispondono a forze fisiche di attrazione verso una media storica, e non possono crescere a dismisura.
+- **Come funziona:** Modella la "forza elastica". Il processo assegna al rendimento mensile una trazione verso il parametro $\theta$ (la media a lungo termine), controllata da una velocità $\kappa$.
+- **Implementazione nel codice:** Nel ciclo, calcoliamo `Rendimento = Rendimento_Ieri + KAPPA * (Media_Storica - Rendimento_Ieri) + Rumore_Casuale`. Se a causa del rumore casuale il portafoglio segna un +20% fittizio, il mese successivo la formula lo spingerà con forza verso il basso per riassorbirlo verso il suo naturale rendimento mensile (es. +0.6%). Ideale per simulazioni macroeconomiche (inflazione) o asset aurei (`IGLN.L`).
+
+### 5. `previsione_5_garch.R` (Volatility Clustering)
+In finanza si dice che "la turbolenza chiama turbolenza" (Cluster di volatilità). Se oggi l'indice crolla del 5%, domani è altamente improbabile che faccia uno 0% calmo; è molto più probabile che faccia un -4% o un +6%. Il modello base non sa nulla del mese precedente.
+- **Come funziona:** È il modello più sofisticato del pacchetto, basato sull'algoritmo Autoregressivo Eteroschedastico Condizionato Generalizzato (GARCH 1,1). Tramite la massiccia libreria R `rugarch`, lo script esegue un "Fit" sui dati storici passati del tuo portafoglio. Cerca di "imparare" quanto a lungo dura un tipico momento di panico del tuo ETF.
+- **Implementazione nel codice:** Non generiamo numeri grezzi. Invochiamo `ugarchsim`, che in base al modello addestrato produce interi vettori temporali in cui si alternano decenni di quiete a improvvisi "grappoli" pluriennali di estrema volatilità (come il periodo 2000-2003 o 2008-2010). Guardando lo Spaghetti plot di questo modello noterai che, al contrario degli altri, le traiettorie non sono frastagliate in modo omogeneo, ma vivono lunghissime fasi lisce interrotte da improvvisi elettrocardiogrammi impazziti. È la simulazione in assoluto più fedele al comportamento della psicologia umana sui mercati.
