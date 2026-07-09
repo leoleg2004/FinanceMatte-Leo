@@ -1,0 +1,12 @@
+AVVISO LEGALE E COPYRIGHT
+
+Copyright (c) 2026 Ing. Leggeri Leonardo
+Tutti i diritti riservati.
+
+ATTENZIONE:
+Il presente software, i relativi modelli e il codice sorgente allegato sono di proprietà esclusiva dell'Ing. Leggeri Leonardo.
+
+È severamente vietata la copia, la distribuzione, la trasmissione, la modifica, la vendita, la rivendita o la cessione a terzi, a qualsiasi titolo, di questo codice e del progetto in esso contenuto, senza l'esplicito e preventivo consenso scritto dell'autore.
+
+AVVISO PENALE:
+L'appropriazione indebita, la distribuzione non autorizzata o la vendita a terzi di questo software senza autorizzazione costituiscono una violazione diretta del diritto d'autore e del segreto industriale. Tali azioni costituiscono reato e l'autore si riserva il diritto di agire in tutte le sedi opportune (civili e penali) per il risarcimento dei danni subiti, come previsto dalla legge in materia di proprietà intellettuale e diritto d'autore.

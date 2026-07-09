@@ -114,7 +114,7 @@ dir.create("../latex/immagini", showWarnings = FALSE, recursive = TRUE)
 
 df_plot <- data.frame(
   Rischio = rischio_var * 100, # Valore assoluto del VaR in %
-  Rendimento = mean_returns * 100
+  Rendimento = mean_returns * 12 * 100 # Annualizzato
 )
 
 # Sottocampionamento per non far crashare ggplot con 100k punti
@@ -128,18 +128,18 @@ if(num_portafogli > 5000) {
 
 p <- ggplot(df_plot_sample, aes(x = Rischio, y = Rendimento)) +
   geom_point(alpha = 0.3, color = "gray50", size = 1) +
-  geom_point(aes(x = abs(var_ottimale)*100, y = rend_ottimale*100), 
+  geom_point(aes(x = abs(var_ottimale)*100, y = rend_ottimale*12*100), 
              color = "green", shape = 18, size = 5) +
-  geom_point(aes(x = abs(var_utente)*100, y = rend_mean_utente*100), 
+  geom_point(aes(x = abs(var_utente)*100, y = rend_mean_utente*12*100), 
              color = "cyan", shape = 17, size = 4) +
-  annotate("text", x = abs(var_ottimale)*100, y = rend_ottimale*100, 
+  annotate("text", x = abs(var_ottimale)*100, y = rend_ottimale*12*100, 
            label = "Min-VaR Ottimo", vjust = -1, color = "darkgreen", fontface = "bold") +
-  annotate("text", x = abs(var_utente)*100, y = rend_mean_utente*100, 
+  annotate("text", x = abs(var_utente)*100, y = rend_mean_utente*12*100, 
            label = "Portafoglio Utente", vjust = -1, color = "darkcyan", fontface = "bold") +
   labs(title = "Frontiera Efficiente Mean-VaR",
        subtitle = "La Nuvola delle combinazioni simulate. Rischio = Perdita Massima Attesa (VaR)",
-       x = "Rischio: Value at Risk Assoluto (%)",
-       y = "Rendimento Medio Mensile (%)") +
+       x = "Rischio: Value at Risk Assoluto Mensile (%)",
+       y = "Rendimento Atteso Annualizzato (%)") +
   theme_minimal()
 
 print(p)

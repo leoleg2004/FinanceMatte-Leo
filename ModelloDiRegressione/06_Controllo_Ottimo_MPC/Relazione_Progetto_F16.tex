@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\title{\textbf{Sistemi di Controllo del Volo (FCS)\\ Automazione del Controllo Longitudinale F-16}}
+\author{\textbf{Ing. Leonardo Leggeri}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Descrizione del Progetto}
+Il presente progetto descrive lo sviluppo di una suite software dedicata all'automazione del controllo longitudinale di un velivolo \textbf{F-16 Fighting Falcon}. L'obiettivo primario dell'architettura è la gestione della stabilità e della risposta dinamica lungo l'asse di beccheggio (pitch), garantendo precisione millimetrica nelle fasi di assetto variabile.
+
+Il cuore dell'algoritmo risiede nell'elaborazione dei modelli in spazio di stato (State-Space), in cui il comportamento dinamico del velivolo viene linearizzato attorno a un punto di equilibrio operativo e gestito attraverso matrici dinamiche.
+
+\section{Implementazione Attuale: Controllo Longitudinale}
+Il software attuale opera filtrando ed elaborando i parametri estratti dalle matrici di sistema specifiche per la dinamica longitudinale. L'architettura prevede tecniche di controllo ottimo e predittivo (come LQR e MPC) per garantire robustezza e prontezza della risposta.
+
+Il modello del sistema fa riferimento alle seguenti matrici:
+\begin{itemize}
+    \item \textbf{Matrice di Stato ($A_{long}$)}: Definisce come le variabili di stato (come velocità lungo l'asse X, velocità lungo l'asse Z, angolo d'attacco e velocità di beccheggio) interagiscono tra loro.
+    \item \textbf{Matrice di Input ($B_{long}$)}: Definisce l'autorità dei comandi attuativi, principalmente gli equilibratori (stabilizzatori orizzontali) e la spinta, sul sistema. Questa viene suddivisa in $B_{ctrl}$ per le variabili di manipolazione e $B_{wind}$ per la gestione delle perturbazioni esterne e del vento.
+\end{itemize}
+
+L'automazione garantisce che il velivolo mantenga i parametri desiderati anche in regimi di volo complessi, correggendo istantaneamente le perturbazioni esterne e rispettando i vincoli fisici degli attuatori (limiti di saturazione e rateo).
+
+\section{Estensioni Future: Controllo Latero-Direzionale}
+La struttura modulare degli script (implementati in ambiente MATLAB/Simulink) è stata progettata per essere altamente scalabile. È infatti possibile estendere l'efficacia del controllo anche alla dinamica latero-direzionale (rollio e imbardata).
+
+L'estensione prevede una transizione metodologica chiara:
+\begin{enumerate}
+    \item \textbf{Sostituzione delle Matrici}: Integrazione delle matrici $A_{lat}$ e $B_{lat}$, che descrivono le interazioni tra l'angolo di derapata (sideslip), il tasso di rollio e il tasso di imbardata.
+    \item \textbf{Filtraggio Specifico}: Gli algoritmi verranno ricalibrati per isolare le diverse costanti di tempo tipiche dei modi latero-direzionali, quali il modo di rollio, il modo spirale e il \textit{Dutch Roll}.
+    \item \textbf{Controllo Multivariabile}: L'autorità di comando verrà estesa ad alettoni e timone direzionale, mantenendo la stessa logica di automazione robusta già implementata per il beccheggio.
+\end{enumerate}
+
+\vspace{2cm}
+\begin{center}
+    \rule{0.8\textwidth}{0.4pt}
+\end{center}
+\vspace{0.5cm}
+
+\section*{Avviso Legale e Copyright}
+\textbf{Copyright \copyright{} 2026 Ing. Leggeri Leonardo. Tutti i diritti riservati.}
+
+\vspace{0.3cm}
+\noindent
+\textbf{ATTENZIONE}: Il presente software, i relativi modelli descritti in questo documento e il codice sorgente collegato sono di proprietà esclusiva dell'Ing. Leggeri Leonardo. 
+
+\vspace{0.3cm}
+\noindent
+È severamente vietata la copia, la distribuzione, la trasmissione, la modifica, la vendita, la rivendita o la cessione a terzi, a qualsiasi titolo, di questo codice e del progetto in esso contenuto, senza l'esplicito e preventivo consenso scritto dell'autore. 
+
+\vspace{0.3cm}
+\noindent
+\textbf{AVVISO PENALE}: L'appropriazione indebita, la distribuzione non autorizzata o la vendita a terzi di questo software senza autorizzazione costituiscono una violazione diretta del diritto d'autore e del segreto industriale. Tali azioni costituiscono reato e l'autore si riserva il diritto di agire in tutte le sedi opportune (civili e penali) per il risarcimento dei danni subiti, come previsto dalla legge in materia di proprietà intellettuale e diritto d'autore.
+
+\end{document}
