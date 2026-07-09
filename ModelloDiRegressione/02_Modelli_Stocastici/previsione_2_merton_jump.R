@@ -10,10 +10,10 @@ ANNI_FUTURI        <- 20
 CAPITALE_INIZIALE  <- 10000
 VERSAMENTO_MENSILE <- 500
 INFLAZIONE_ANNUA   <- 0.02
-NUM_SIMULAZIONI    <- 1000
+NUM_SIMULAZIONI    <- 10000
 
 # Parametri del Salto (Merton)
-LAMBDA_SALTI    <- 0.1   # Frequenza attesa: 0.5 salti all'anno (1 salto ogni 2 anni)
+LAMBDA_SALTI    <- 0.5   # Frequenza attesa: 0.5 salti all'anno (1 salto ogni 2 anni)
 MU_SALTO        <- -0.15 # Mediamente il "salto" distrugge il 15% (es. Crash covid)
 SIGMA_SALTO     <- 0.05  # Volatilità della grandezza del salto
 

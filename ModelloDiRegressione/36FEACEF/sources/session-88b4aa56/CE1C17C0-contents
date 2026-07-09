@@ -1,0 +1,48 @@
+FASE 1: Preparazione a casa
+Prima di uscire, formatta la tua chiavetta USB in exFAT. I computer del laboratorio con Bloomberg usano Windows, ma formattando in exFAT avrai la certezza assoluta che, una volta tornato a casa, il tuo Mac M3 Pro la leggerà istantaneamente senza problemi di permessi o file system. Crea già le 4 cartelle vuote (elencate alla fine) sulla chiavetta.
+FASE 2: In Laboratorio (L'Estrazione)
+Dovrai usare due metodi di estrazione diversi a seconda del modello che devi calibrare.
+Metodo A: Lo Spreadsheet Builder (Per Markowitz, Monte Carlo, GARCH, Merton, O-U)
+Usa l'interfaccia guidata di Excel per le serie storiche (Cartelle 1, 2 e 4).
+                        Apri Excel e vai sulla scheda Bloomberg → Spreadsheet Builder → Historical Data Table.
+                        Step 1 (Securities): Cerca e inserisci il ticker ufficiale (es. SPX Index). Inseriscine uno alla volta per i file azionari.
+                        Step 2 (Fields): Cerca e aggiungi i mnemonici esatti (es. PX_LAST, TOT_RETURN_INDEX_GROSS_DVDS...).
+                        Step 3 (Date Range): * Periodicity: Daily.
+                        Start/End: Da 01/01/2006 a Today (15-20 anni per evitare rumore di mercato troppo vecchio e non appesantire Excel).
+                        Advanced Options (Fondamentale): Imposta i Non-Trading Days su Previous Value per allineare i calendari internazionali ed evitare buchi nelle matrici.
+                        Clicca Finish e aspetta che i dati carichino.
+                        Metodo B: Esportazione Nativa (Solo per Heston - Cartella 3)
+                        Non usare lo Spreadsheet Builder per le matrici 3D di volatilità.
+                        Sul terminale nero scrivi: [Ticker] Index OVDV <GO> (es. SPX Index OVDV <GO>).
+                        Vai sulla scheda Matrix o Surface.
+                        Clicca sul pulsante rosso Export to Excel.
+                        FASE 3: Il Congelamento e Salvataggio (Critico)
+                        Prima di salvare i file sulla chiavetta, devi eseguire queste operazioni su ogni singolo foglio Excel, altrimenti sul tuo Mac vedrai solo errori #N/A.
+                        Scollega da Bloomberg: Seleziona tutto il foglio (Ctrl + A), copia (Ctrl + C), clicca sulla prima cella col tasto destro e fai Incolla Valori (l'icona "123").
+Formatta le Date: Seleziona la colonna delle date e imposta il formato personalizzato su YYYY-MM-DD.
+Controlla i Decimali: Assicurati che i numeri usino il punto . e non la virgola ,.
+Esporta: Fai Salva con nome e scegli rigorosamente il formato CSV (Comma delimited) (*.csv).
+L'Architettura della Chiavetta USB (Da ricreare esattamente)
+                                                                                                                                                                       📂 USB_Drive (Formattata in exFAT)
+                                                                                                                                                                       
+                                                                                                                                                                       ┣ 📂 1_Serie_Storiche_Azionarie (Da estrarre con Metodo A)
+                                                                                                                                                                       ┃  ┣ 📄 SPX_Daily.csv      (Campi: PX_LAST, TOT_RETURN_INDEX_GROSS_DVDS, PX_VOLUME, EQY_DIV_YLD_INDX)
+                                                                                                                                                                       ┃  ┣ 📄 SXXP_Daily.csv     (Campi: PX_LAST, TOT_RETURN_INDEX_GROSS_DVDS, PX_VOLUME, EQY_DIV_YLD_INDX)
+                                                                                                                                                                       ┃  ┣ 📄 MXWD_Daily.csv     (Campi: PX_LAST, TOT_RETURN_INDEX_GROSS_DVDS, PX_VOLUME, EQY_DIV_YLD_INDX)
+                                                                                                                                                                       ┃  ┗ 📄 MXEF_Daily.csv     (Campi: PX_LAST, TOT_RETURN_INDEX_GROSS_DVDS, PX_VOLUME, EQY_DIV_YLD_INDX)
+                                                                                                                                                                       ┃
+                                                                                                                                                                       ┣ 📂 2_Skew_Storico_Merton (Da estrarre con Metodo A)
+                                                                                                                                                                       ┃  ┣ 📄 SPX_Skew.csv       (Campi: 30D_IMPL_VOL_25D_PUT, 30D_IMPL_VOL_ATM, 30D_IMPL_VOL_25D_CALL, VOLATILITY_90D)
+                                                                                                                                                                       ┃  ┣ 📄 SXXP_Skew.csv      (Campi: 30D_IMPL_VOL_25D_PUT, 30D_IMPL_VOL_ATM, 30D_IMPL_VOL_25D_CALL, VOLATILITY_90D)
+                                                                                                                                                                       ┃  ┗ 📄 MXWD_Skew.csv      (Campi: 30D_IMPL_VOL_25D_PUT, 30D_IMPL_VOL_ATM, 30D_IMPL_VOL_25D_CALL, VOLATILITY_90D)
+                                                                                                                                                                       ┃
+                                                                                                                                                                       ┣ 📂 3_Superfici_Volatilita_Heston (Da estrarre con Metodo B)
+                                                                                                                                                                       ┃  ┣ 📄 SPX_VolSurface.csv    (Matrice esportata da OVDV <GO>)
+                                                                                                                                                                       ┃  ┣ 📄 SXXP_VolSurface.csv   (Matrice esportata da OVDV <GO>)
+                                                                                                                                                                       ┃  ┗ 📄 MXEF_VolSurface.csv   (Matrice esportata da OVDV <GO>)
+                                                                                                                                                                       ┃
+                                                                                                                                                                       ┗ 📂 4_Tassi_OrnsteinUhlenbeck (Da estrarre con Metodo A)
+                                                                                                                                                                       ┣ 📄 US_Rates_Curve.csv (Ticker: USGG3M Index, USGG10YR Index, SOFRRATE Index -> Campo: PX_LAST)
+                                                                                                                                                                       ┗ 📄 EU_Rates_Curve.csv (Ticker: GTDEM3M Govt, GTDEM10Y Govt, ESTRON Index -> Campo: PX_LAST)
+                                                                                                                                                                  
+                                                                                                                                                                     
