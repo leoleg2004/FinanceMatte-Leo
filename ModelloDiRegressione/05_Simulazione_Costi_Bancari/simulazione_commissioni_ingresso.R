@@ -31,7 +31,7 @@ anni_passati <- as.numeric(data_finale - data_iniziale) / 365.25
 periodi_per_anno <- (n - 1) / anni_passati
 
 # 3. IMPOSTAZIONI DEGLI SCENARI BANCARI
-ter_banca <- 0.015         # Costo Annuo (TER) fisso all'1.5% per entrambe le banche
+ter_banca <- 0.018         # Costo Annuo (TER) fisso all'1.5% per entrambe le banche
 ingresso_banca <- 0.020    # Commissione ingresso del 2.0% (solo per la terza opzione)
 
 # Sottraiamo il TER mensile/periodico

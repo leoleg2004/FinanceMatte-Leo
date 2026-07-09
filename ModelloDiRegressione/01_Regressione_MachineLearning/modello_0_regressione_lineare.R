@@ -160,3 +160,5 @@ grafico <- ggplot(df_reg, aes(x = Date)) +
 print(grafico)
 cat("Grafico generato. Controlla la tab 'Plots' in RStudio.\n")
 
+
+
