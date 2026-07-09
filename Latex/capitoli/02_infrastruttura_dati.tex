@@ -1,0 +1,34 @@
+\chapter{Matematica delle Serie Storiche e Covarianza}
+
+Il comportamento degli asset finanziari non segue progressioni aritmetiche, bensì dinamiche geometriche composte. La base di tutta l'analisi di regressione e statistica del nostro modello parte dalla corretta estrazione e trasformazione dei prezzi storici dal database.
+
+\section{Modello di Trasformazione: I Log-Rendimenti}
+Dato un vettore di prezzi storici mensili $P_t$, il rendimento semplice $R_t = (P_t - P_{t-1})/P_{t-1}$ presenta asimmetrie matematiche (un calo del 50\% richiede un rialzo del 100\% per il recupero). Per i modelli stocastici, si utilizzano i \emph{log-rendimenti} $r_t$, che godono della proprietà additiva nel tempo:
+
+\begin{equation}
+r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)
+\end{equation}
+
+Tutti gli script R del progetto estraggono i dati da MySQL e li trasformano istantaneamente in log-rendimenti, calcolando poi per ciascun asset $i$ il rendimento medio storico $\mu_i$ (drift vettoriale) e la volatilità $\sigma_i$:
+\begin{equation}
+\mu_i = \frac{1}{N} \sum_{t=1}^{N} r_{i,t} \quad , \quad \sigma_i = \sqrt{\frac{1}{N-1} \sum_{t=1}^{N} (r_{i,t} - \mu_i)^2}
+\end{equation}
+
+\section{La Sintesi della Matrice di Covarianza}
+L'unione di asset con età anagrafiche profondamente diverse (es. il fondo sul petrolio USO ha uno storico vastissimo rispetto agli ETF azionari più moderni) crea matrici asincrone. La funzione standard R \texttt{cov()} fallirebbe, richiedendo l'eliminazione dei dati antecedenti alla data di nascita dell'asset più giovane.
+
+Per preservare l'intero storico (massimizzando la significatività statistica della stima di $\sigma_i$), il modello implementa la seguente regressione matriciale:
+\begin{enumerate}
+    \item \textbf{Estrazione Vettoriale Massima}: Si estraggono $\mu_i$ e $\sigma_i$ per ogni asset usando il 100\% dei dati disponibili per ciascuno.
+    \item \textbf{Matrice di Correlazione Sincrona}: Si crea una matrice di correlazione di Pearson $C$ calcolata \emph{solo} nel sottospazio temporale in cui tutti gli asset coesistono:
+    \begin{equation}
+    C_{i,j} = \frac{\text{Cov}_{sync}(r_i, r_j)}{\sigma_{i,sync} \cdot \sigma_{j,sync}}
+    \end{equation}
+    \item \textbf{Ricostruzione di $\Sigma$}: Si ricostruisce una matrice di covarianza globale $\Sigma$ definita positiva moltiplicando le deviazioni standard "storiche assolute" per la correlazione sincrona:
+    \begin{equation}
+    \Sigma = D \cdot C \cdot D
+    \end{equation}
+    dove $D = \text{diag}(\sigma_1, \sigma_2, \dots, \sigma_n)$.
+\end{enumerate}
+
+Questa formulazione matematica (presente in tutti gli script) è fondamentale: garantisce che la propensione intrinseca al rischio dell'asset ($\sigma$) sia basata sul più ampio campione statistico possibile, mentre la sua relazione relazionale ($C$) rifletta gli esatti comportamenti simultanei durante cicli di mercato condivisi.

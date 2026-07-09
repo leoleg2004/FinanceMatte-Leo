@@ -14,7 +14,7 @@ PORTFOLIO_ETFS <- c("VWCE.DE", "SXRV.DE", "ZPRR.DE")
 
 # Assicurati che i pesi corrispondano esattamente al numero di ETF scelti sopra 
 # e che la somma faccia sempre 1.0.
-TUO_PORTAFOGLIO_PESI <- c(0.60, 0.20, 0.20) 
+TUO_PORTAFOGLIO_PESI <- c(0.30, 0.40, 0.20) 
 
 RISK_FREE_RATE <- 0.03 # Tasso privo di rischio stimato al 3% annuo
 

@@ -1,0 +1,18 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduzione e Integrazione Dati}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Obiettivi dell'Analisi Quantitativa}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Architettura Dati: Da Yahoo Finance a Bloomberg}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Matematica delle Serie Storiche e Covarianza}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Modello di Trasformazione: I Log-Rendimenti}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}La Sintesi della Matrice di Covarianza}{3}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Modelli Stocastici: Script 6 e 7}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Moto Browniano Geometrico (GBM)}{5}{section.3.1}%
+\contentsline {section}{\numberline {3.2}La Decomposizione di Cholesky}{5}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Dinamica Finanziaria nel Modello 7}{6}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Limiti della Varianza e Misure Quantiliche (VaR e CVaR)}{6}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Ottimizzazione Matematica: Script 8 (Markowitz Pura)}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Modello Media-Varianza e Frontiera Efficiente}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Identificazione del Punto Ottimo (Tangency Portfolio)}{10}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Analisi Comparativa: Scarto di Efficienza}{10}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Oltre Markowitz: Ottimizzazione Mean-VaR (Script 10)}{11}{section.4.4}%

@@ -1,0 +1,33 @@
+\documentclass[12pt, a4paper, twoside, openright, italian]{report}
+\usepackage[italian]{babel}
+
+\input{packages}
+
+\title{\textbf{Analisi Stocastica e Ottimizzazione N-Dimensionale di Portafoglio ETF}\\ 
+	\Large Integrazione di Decomposizione di Cholesky, Modelli Monte Carlo e Frontiera Efficiente di Markowitz}
+\author{Leonardo Leggeri \and Progetto Finance Matte \& Leo}
+\date{\today}
+
+\begin{document}
+	 
+	\maketitle
+
+	% ==========================================
+	% INDICE
+	% ==========================================
+	\pagenumbering{roman}
+	\tableofcontents
+	\cleardoublepage
+	
+	% ==========================================
+	% CAPITOLI
+	% ==========================================
+	\pagenumbering{arabic}
+
+	\input{capitoli/01_introduzione}
+	\input{capitoli/02_infrastruttura_dati}
+	\input{capitoli/03_simulazione_stocastica}
+	\input{capitoli/04_ottimizzazione_markowitz}
+
+	\clearpage
+\end{document}

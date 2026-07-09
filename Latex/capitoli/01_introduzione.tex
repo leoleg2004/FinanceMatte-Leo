@@ -1,0 +1,21 @@
+\chapter{Introduzione e Integrazione Dati}
+
+Questo elaborato descrive lo sviluppo e l'architettura matematica di un motore quantitativo per la previsione e l'ottimizzazione stocastica di portafogli multi-asset. L'analisi prende come riferimento uno scenario applicativo di Piano di Accumulo del Capitale (PAC) su un orizzonte decennale.
+
+\section{Obiettivi dell'Analisi Quantitativa}
+La gestione di portafogli moderni non può basarsi su proiezioni deterministiche lineari. L'obiettivo primario di questo lavoro \`e l'ingegnerizzazione di un framework matematico-statistico capace di:
+\begin{itemize}
+    \item Costruire una simulazione Monte Carlo rigorosa basata sulla covarianza storica.
+    \item Implementare gli shock macroeconomici quali il \emph{Total Expense Ratio} (TER) e l'inflazione monetaria, in modo da proiettare il valore reale e non nominale del capitale.
+    \item Ricercare l'allocazione matematicamente ottima secondo i teoremi della Frontiera Efficiente.
+\end{itemize}
+
+\section{Architettura Dati: Da Yahoo Finance a Bloomberg}
+Il motore statistico \`e fortemente dipendente dalla qualit\`a delle serie storiche dei prezzi (chiusure giornaliere e mensili). Allo stato attuale dello sviluppo, l'ecosistema si interfaccia con un database relazionale MySQL (\texttt{PortfolioDB}) popolato dai feed gratuiti estratti da \emph{Yahoo Finance}.
+
+Tuttavia, l'intera struttura del database e gli script di ingestion sono stati progettati \emph{by-design} per scalare a feed istituzionali. Nelle fasi successive del progetto, i dati provenienti da Yahoo Finance verranno integralmente sostituiti dai data feed di \textbf{Bloomberg} tramite Terminal API. Questa transizione garantir\`a:
+\begin{enumerate}
+    \item Assenza di buchi temporali (\emph{missing data}) nei prezzi di chiusura.
+    \item Inclusione automatica del Total Return (reinvestimento dei dividendi netto/lordo) direttamente alla fonte, migliorando l'accuratezza dei log-rendimenti.
+    \item Qualit\`a del dato certificata per validare in via definitiva l'output dei modelli stocastici e di Markowitz qui descritti.
+\end{enumerate}
