@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.13)  9 JUL 2026 15:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.13)  11 JUL 2026 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1007,25 +1007,61 @@ Package pdftex.def Info: immagini/markowitz_var_plot.png  used on input line 46
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11])
-[12 <./immagini/markowitz_var_plot.png>] [13] (./main.aux)
+(./capitoli/05_controllo_ottimo_mpc.tex [12 <./immagini/markowitz_var_plot.png>
+] [13] [14
+
+]
+Capitolo 5.
+[15]
+Overfull \hbox (21.647pt too wide) detected at line 25
+[][][][] \OML/lmm/m/it/12 J \OT1/lmr/m/n/12 = [] [] + (\OML/lmm/m/it/12 x[] \OM
+S/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 x[]\OT1/lmr/m/n/12 )[]\OML/lmm/m/it/12 P\OT1
+/lmr/m/n/12 (\OML/lmm/m/it/12 x[] \OMS/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 x[]\OT1
+/lmr/m/n/12 )
+ []
+
+
+Overfull \hbox (54.28075pt too wide) in paragraph at lines 34--35
+\T1/lmr/m/n/12 sta-ti e gli in-gres-si pre-det-ti for-ma-no l'iper-vettore di d
+e-ci-sio-ne $\OML/lmm/m/it/12 z[] \OT1/lmr/m/n/12 = [\OML/lmm/m/it/12 u[]; [] ;
+ u[]; x[]; [] ; x[]\OT1/lmr/m/n/12 ][]$\T1/lmr/m/n/12 . 
+ []
+
+[16]
+<immagini/mpc_stati.png, id=222, 578.16pt x 289.08pt>
+File: immagini/mpc_stati.png Graphic file (type png)
+<use immagini/mpc_stati.png>
+Package pdftex.def Info: immagini/mpc_stati.png  used on input line 54.
+(pdftex.def)             Requested size: 405.45047pt x 202.72513pt.
+) [17 <./immagini/mpc_stati.png>] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AA330BBC88AD9E450999B58E37C47F9D;4385.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: AA330BBC88AD9E450999B58E37C47F9D;4385
+(rerunfilecheck)             After:  E2AE779A7455141E6CD84AC15E311AF3;5909.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22957 strings out of 467525
- 392334 string characters out of 5418982
- 1240689 words of memory out of 5000000
- 51506 multiletter control sequences out of 15000+600000
- 712672 words of font info for 105 fonts, out of 8000000 for 9000
+ 22999 strings out of 467525
+ 393223 string characters out of 5418982
+ 1244690 words of memory out of 5000000
+ 51526 multiletter control sequences out of 15000+600000
+ 715670 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,70p,1197b,1821s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 68i,10n,70p,1197b,1821s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/lo
 cal/texlive/2026/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texliv
 e/2026/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2026/tex
@@ -1036,11 +1072,12 @@ blic/lm/lmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr
 /local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/tex
 live/2026/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2026/
 texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2026/texmf-dist/
-fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (16 pages, 1326026 bytes).
+fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (20 pages, 1454217 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 222 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 316 PDF objects out of 1000 (max. 8388607)
+ 257 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 144 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -16,3 +16,9 @@
 \contentsline {section}{\numberline {4.2}Identificazione del Punto Ottimo (Tangency Portfolio)}{10}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Analisi Comparativa: Scarto di Efficienza}{10}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Oltre Markowitz: Ottimizzazione Mean-VaR (Script 10)}{11}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Teoria dei Sistemi e Controllo Ottimo in Finanza}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Modellazione Nello Spazio di Stato MIMO}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Il Model Predictive Control (MPC)}{16}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Stabilità Asintotica in Closed-Loop}{16}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}La Funzione di Lyapunov (CLF)}{16}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Il Vincolo Terminale di Uguaglianza}{17}{subsection.5.3.2}%
